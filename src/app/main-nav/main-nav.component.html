@@ -1,0 +1,33 @@
+<mat-toolbar color="primary" class="mat-elevation-z12">
+   <button mat-raised-button color="primary">Car Parking</button>
+   <button mat-raised-button color="primary" (click)="putRide()">Create Pool</button>
+  <span class="example-fill-remaining-space"></span>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{name: 'Kranthi'}">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <ng-template matMenuContent let-name="name">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Log off {{name}}</button>
+      </ng-template>
+    </mat-menu>
+</mat-toolbar>
+<style>
+  .example-fill-remaining-space {
+  flex: 1 1 auto;
+}
+/* .mat-button{
+  background: transparent;
+}
+.docs-navbar-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 8px 16px;
+} */
+</style>
