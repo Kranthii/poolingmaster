@@ -1,0 +1,17 @@
+
+<div *ngIf="IsConfirmed" >
+<h4>Do you want to reserve this seat. Are you sure?
+</h4>
+<button mat-raised-button color="primary" (click)="Confirm()">Yes</button>
+<button mat-raised-button (click)="dialogRef.close()">No</button>
+</div>
+<div *ngIf="!IsConfirmed">
+  <h4>You Have Booked The seat
+  </h4>
+  <button mat-raised-button color="primary" (click)="dialogRef.close()">Ok</button>
+  </div>
+  <!-- <button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>
+  show = {{show}}
+  <br>
+  <div *ngIf="show">Text to show</div> -->
+`

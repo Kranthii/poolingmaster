@@ -12,11 +12,12 @@ import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
-  template: `
-  <h2>Hi! I am modal dialog!</h2>
-  <button mat-raised-button (click)="dialogRef.close()">Close dialog</button>`,
+  templateUrl: './confiramtionPopup.html'
 })
 export class DialogOverviewExampleDialog {
+ IsConfirmed:boolean=true;
+ show: boolean = true;
+
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
@@ -24,6 +25,9 @@ export class DialogOverviewExampleDialog {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+   Confirm(){
+ this.IsConfirmed=false;
   }
 
 }
@@ -45,7 +49,29 @@ export class PageFeaturesComponent implements OnInit {
   formValue: string;
   toValue:string;
   display: boolean = false;
-
+  Pools = [
+    'From Pool',
+    'To Pool',
+  ];
+  fromDisable:boolean=false;
+  toDisable:boolean=false;
+  SelectedPool: string;
+OnRadioChange(){
+  if(this.SelectedPool=='From Pool'){
+    this.formValue="RMZ";
+    this.toValue="";
+   this.fromDisable=true;
+   this.toDisable=false;
+   this.SearchRides();
+  }
+  if(this.SelectedPool=='To Pool'){
+    this.toValue="RMZ";
+    this.formValue="";
+    this. fromDisable=false;
+    this.toDisable=true;
+    this.SearchRides();
+  }
+}
   ngOnInit() {
     this.tasksService.getRides()
     .subscribe(tasks => {
