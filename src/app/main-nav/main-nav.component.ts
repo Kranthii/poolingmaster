@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import { TasksService } from '../tasks.service';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',
@@ -10,12 +11,24 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent implements OnInit {
-
-  private title: string = "Start Bootstrap"
-  constructor(private tasksService:TasksService) { }
+  name: string;
+  private title: string = "Start Bootstrap";
+  constructor(private tasksService:TasksService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    // console.log('logged in as '+ localStorage.getItem('currentUser'));
+    this.name = localStorage.getItem('currentUser');
+    console.log(this.name);
   }
+
+  logoff(){
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userId');
+    this.router.navigate(['login']);
+  }
+  
 
   putRide(){
     var rideTxt = '{' +
