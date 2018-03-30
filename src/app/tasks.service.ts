@@ -18,6 +18,9 @@ getUsers(){
     return this.http.get(environment.serviceContext + '/api/users');
 }
 
+getUser(userID){
+  return this.http.get('http://localhost:3000/api/user/'+userID);
+}
 getRides(){
   return this.http.get<any[]>(environment.serviceContext + '/api/rides');
 }

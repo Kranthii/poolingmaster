@@ -14,16 +14,21 @@ router.get('/users',function(req,res,next){
     });
 });
 
-//Get one user
-router.get('/user/:id',function(req,res,next){
-    db.users.findOne({_id: mongojs.ObjectId(req.params.id)},function(err,docs){
+//Get one user based on userid
+router.get('/user/:userid',function(req,res,next){
+    console.log(req.params.userid);
+    let userId =  String(req.params.userid);
+    db.users.find({"login.login_id": userId},function(err,docs){
         if(err){
             res.send(err);
         }
+        // console.log(docs);
         res.json(docs);
     });
 });
 
+
+//delete user
 router.delete('/user/:id',function(req,res,next){
     db.users.remove({_id: mongojs.ObjectId(req.params.id)},function(err,docs){
         if(err){

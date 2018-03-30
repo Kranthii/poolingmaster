@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { TasksService } from './tasks.service';
 
+
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -89,7 +90,10 @@ export class MaterialModule {}
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { PoolComponent } from './pool/pool.component';
+import { RegisterComponent } from './register/register.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
+import { LoginComponent } from './login/login.component';
 import { PageFeaturesComponent, DialogOverviewExampleDialog } from './page-features/page-features.component';
 import { PageFooterComponent } from './page-footer/page-footer.component'
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -97,6 +101,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {DialogModule} from 'primeng/dialog';
 import { ConfirmationService } from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
+import { routing } from './app.routing';
 // import {NgModule} from '@angular/core';
 // import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // // import {HttpModule} from '@angular/http';
@@ -104,10 +110,10 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 // import { TasksService } from './tasks.service';
 
 @NgModule({
-  declarations: [AppComponent, MainNavComponent, PageFeaturesComponent, PageFooterComponent,DialogOverviewExampleDialog],
+  declarations: [AppComponent, MainNavComponent, PageFeaturesComponent,PoolComponent, RegisterComponent , PageFooterComponent,DialogOverviewExampleDialog, LoginComponent],
   imports: [
     MaterialModule,AngularFontAwesomeModule,
-    NoopAnimationsModule,HttpClientModule,FormsModule,ReactiveFormsModule, DialogModule,ConfirmDialogModule ,BrowserModule],
+    NoopAnimationsModule,HttpClientModule,FormsModule,ReactiveFormsModule, DialogModule,ConfirmDialogModule ,BrowserModule,routing],
   providers: [ TasksService ,ConfirmationService],
   bootstrap: [AppComponent],
   entryComponents: [ DialogOverviewExampleDialog ],
