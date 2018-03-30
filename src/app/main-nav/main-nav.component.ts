@@ -25,12 +25,12 @@ export class MainNavComponent implements OnInit {
         '"start_time" : "20/02/2018 17:30:00",' +
         '"from" :{' +
             '"building": "3B",' +
-            '"street": "Electronic City",' +
+            '"street": "RMZ",' +
             '"zipcode": "104233"' +
         '},' +
         '"to" : {' +
             '"building": "1007",'+
-            '"street": "WhiteField",'+
+            '"street": "RMZ",'+
             '"zipcode": "10462"'+
         '},'+
         '"preferences" : {'+
