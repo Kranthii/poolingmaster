@@ -12,7 +12,7 @@
     <mat-toolbar style="height:100%">
       <div class="col-md-offset-1 col-md-3">
           <mat-form-field class="example-full-width">
-              <input matInput placeholder="From" aria-label="From" [matAutocomplete]="auto" [(ngModel)]="formValue" (ngModelChange)="filterStates('from')"    [disbaled]="fromDisable" >
+              <input matInput placeholder="From" aria-label="From" [matAutocomplete]="auto" [(ngModel)]="formValue" (ngModelChange)="filterStates('from')"    [disabled]="fromDisable" >
               <mat-autocomplete #auto="matAutocomplete">
                 <mat-option *ngFor="let state of fromCities" [value]="state" class="mat-option-override" >
                   <span>{{ state }}</span>
@@ -22,7 +22,7 @@
       </div>
       <div class="col-md-offset-1 col-md-3">
           <mat-form-field class="example-full-width">
-              <input matInput placeholder="To" aria-label="To" [matAutocomplete]="auto1" [(ngModel)]="toValue" (ngModelChange)="filterStates('to')" [disbaled]="toDisable" >
+              <input matInput placeholder="To" aria-label="To" [matAutocomplete]="auto1" [(ngModel)]="toValue" (ngModelChange)="filterStates('to')" [disabled]="toDisable" >
               <mat-autocomplete #auto1="matAutocomplete">
                 <mat-option *ngFor="let state of toCities" [value]="state" class="mat-option-override" >
                   <span>{{ state }}</span>
