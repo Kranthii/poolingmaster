@@ -1,7 +1,10 @@
 
 <div *ngIf="IsConfirmed" >
-<h4>Do you want to reserve this seat. Are you sure?
+<h4>seats to be Booked
 </h4>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Seats" type="number" max="{{data.free_seats}}" min="1" [(ngModel)]="seats" >
+</mat-form-field>
 <button mat-raised-button color="primary" (click)="Confirm()">Yes</button>
 <button mat-raised-button (click)="dialogRef.close()">No</button>
 </div>

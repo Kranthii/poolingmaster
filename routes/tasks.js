@@ -83,8 +83,9 @@ router.put('/countUpdate/:id',function(req,res,next){
     let rideId = Number(req.params.id);
     var ride = req.body;
     var updRide = ride;
-    updRide.free_seats = ride.free_seats -1 ;
-    db.activeRides.update({id: rideId},updRide,{},function(err,docs){
+    console.log(updRide);
+    console.log("Put command");
+    db.activeRides.update({_id: updRide._id},updRide,{},function(err,docs){
         if(err){
             res.send(err);
         }

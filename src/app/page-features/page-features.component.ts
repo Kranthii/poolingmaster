@@ -17,9 +17,9 @@ import {ConfirmationService} from 'primeng/api';
 export class DialogOverviewExampleDialog {
  IsConfirmed:boolean=true;
  show: boolean = true;
+seats:number;
 
-
-  constructor(
+  constructor(private tasksService:TasksService,
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -28,6 +28,20 @@ export class DialogOverviewExampleDialog {
   }
    Confirm(){
  this.IsConfirmed=false;
+ this.updateSeatCount()
+  }
+  updateSeatCount(){
+    this.data.free_seats= this.data.free_seats-this.seats
+    console.log(this.data);
+    this.tasksService.updateSeatsCount(this.data).subscribe(
+           data => {
+           console.log('ride updated')
+           },
+         error => {
+             console.error("Error saving ride!");
+             return Observable.throw(error);
+           }
+         );
   }
 
 }
@@ -90,15 +104,16 @@ OnRadioChange(){
 
   constructor(private tasksService:TasksService, public dialog: MatDialog,private confirmationService: ConfirmationService) {
   }
-  openDialog(): void {
+  openDialog(item): void {
     let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
-      //data: { name: this.name, animal: this.animal }
+      data: item
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
      // this.animal = result;
+    // this.ngOnInit();
     });
   }
 
@@ -131,44 +146,7 @@ getUser(){
   });
 }
 
-updateSeatCount(){
-  var rideTxt = '{' +
-      '"id" : 12345,' +
-      '"rider_id" : 101,' +
-      '"free_seats" : 3,' +
-      '"start_time" : "20/02/2018 17:30:00",' +
-      '"from" :{' +
-          '"building": "3B",' +
-          '"street": "Eco Space",' +
-          '"zipcode": "104233"' +
-      '},' +
-      '"to" : {' +
-          '"building": "1007",'+
-          '"street": "Morris Park Ave",'+
-          '"zipcode": "10462"'+
-      '},'+
-      '"preferences" : {'+
-          '"pref_id" : 7698,'+
-          '"isSmokingAllowed" : false,'+
-          '"isPetAllowed" : false,'+
-          '"sameGenderFlag" : false'+
-      '},'+
-      '"list_of_co_riders" : [203],'+
-      '"cost_per_person" : 100,'+
-      '"timestamp" : "20/02/2018 17:00:00"'+
-  '}'
-  var ride = JSON.parse(rideTxt);
-  // console.log(ride);
-  this.tasksService.updateSeatsCount(ride).subscribe(
-         data => {
-         console.log('ride updated')
-         },
-       error => {
-           console.error("Error saving ride!");
-           return Observable.throw(error);
-         }
-       );
-}
+
 
 }
 
