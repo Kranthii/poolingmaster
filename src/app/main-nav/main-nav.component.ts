@@ -4,6 +4,10 @@ import { TasksService } from '../tasks.service';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Router, ActivatedRoute } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import { DialogOverviewExampleDialog } from '../page-features/page-features.component';
 
 @Component({
   selector: 'app-main-nav',
@@ -15,20 +19,32 @@ export class MainNavComponent implements OnInit {
   private title: string = "Start Bootstrap";
   constructor(private tasksService:TasksService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,public dialog: MatDialog,private confirmationService: ConfirmationService
+    ) { }
 
   ngOnInit() {
     // console.log('logged in as '+ localStorage.getItem('currentUser'));
     this.name = localStorage.getItem('currentUser');
     console.log(this.name);
   }
+  openDialog(): void {
+    let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      //data: item
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+     // this.animal = result;
+    // this.ngOnInit();
+    });
+  }
   logoff(){
     localStorage.removeItem('currentUser');
     localStorage.removeItem('userId');
     this.router.navigate(['login']);
   }
-  
+
 
   putRide(){
     var rideTxt = '{' +
