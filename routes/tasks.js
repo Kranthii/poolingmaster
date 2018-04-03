@@ -27,6 +27,18 @@ router.get('/user/:userid',function(req,res,next){
     });
 });
 
+//register or add user
+router.post('/user',function(req,res){
+    let user = req.body;
+    console.log(user);
+    db.users.save(user, function(err,task){
+        if(err){
+            res.send(err);
+        }
+        res.json(user);
+    });
+});
+
 
 //delete user
 router.delete('/user/:id',function(req,res,next){

@@ -21,6 +21,11 @@ getUsers(){
 getUser(userID){
   return this.http.get('http://localhost:3000/api/user/'+userID);
 }
+
+putUser(user){
+  return this.http.post('http://localhost:3000/api/user', user);
+}
+
 getRides(){
   return this.http.get<any[]>(environment.serviceContext + '/api/rides');
 }

@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { TasksService } from './tasks.service';
-
+import { AlertService } from './alert.service';
 
 import {
   MatAutocompleteModule,
@@ -103,6 +103,7 @@ import { ConfirmationService } from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 import { routing } from './app.routing';
+import {AuthGuard} from './_guards'
 // import {NgModule} from '@angular/core';
 // import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // // import {HttpModule} from '@angular/http';
@@ -114,7 +115,7 @@ import { routing } from './app.routing';
   imports: [
     MaterialModule,AngularFontAwesomeModule,
     NoopAnimationsModule,HttpClientModule,FormsModule,ReactiveFormsModule, DialogModule,ConfirmDialogModule ,BrowserModule,routing],
-  providers: [ TasksService ,ConfirmationService],
+  providers: [ AlertService, AuthGuard, TasksService ,ConfirmationService],
   bootstrap: [AppComponent],
   entryComponents: [ DialogOverviewExampleDialog ],
   exports:[],

@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         console.log("Loggin in", this.model.username + ", passs:" + this.model.password);
         this.tasksService.getUser(this.model.username).subscribe(user => {
+            console.log(Object.keys(user).length);
             // console.log(user[0].login.password);
+            if(Object.keys(user).length != 0){
             this.userPasswd = user[0].login.password;
             if(this.userPasswd == this.model.password){
                 console.log('login succcessful');
@@ -51,11 +53,15 @@ export class LoginComponent implements OnInit {
                 console.log('invalid username or password');
                 this.router.navigate(['login']);
             }
+        } else{
+            this.loading = false;
+            console.log("User doesn't exist. Click register for sign up")
+        }
         });
         
         // console.log(this.userDetails);
         // this.router.navigate('travels');
-        // this.Tas.login(this.model.username, this.model.password)
+        // this.Task.login(this.model.username, this.model.password)
         //     .subscribe(
         //         data => {
         //             this.router.navigate([this.returnUrl]);
