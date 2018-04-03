@@ -76,9 +76,12 @@
                   </mat-card-content>
                </div>
                <div class="col-md-2">
-                  <mat-card-actions>
-                     <button mat-raised-button color="primary" (click)="openDialog()">Request</button>
-                  </mat-card-actions>
+                      <b>
+                          {{item.free_seats}} Seats Available
+                       </b>
+                       <div *ngIf="item.free_seats>0">
+                     <button mat-raised-button color="primary" (click)="openDialog(item)">Request</button>
+                      </div>
                </div>
             </mat-card>
             <br/>
