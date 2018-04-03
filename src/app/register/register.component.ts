@@ -23,10 +23,8 @@ export class RegisterComponent {
 
     register() {
         this.loading = true;
-        console.log(this.model.firstName);
-        console.log('register');
         var userDetailsTxt = '{' +
-        // '"user_id": "getNextSequenceValue("userid")",'+
+        '"user_id":'+this.model.empID+','+
         '"first_name":"'+this.model.firstName+'",'+
         '"last_name":"'+this.model.lastName+'",'+
         '"login":{'+
@@ -35,39 +33,35 @@ export class RegisterComponent {
         '}'+
         '}'
         var userDetails = JSON.parse(userDetailsTxt);
-        // userDetails.user_id='getNextSequenceValue("userid")';
-        console.log(userDetails);
         this.tasksService.getUser(this.model.username).subscribe(user => {
-            console.log(Object.keys(user).length);
+            // console.log(Object.keys(user).length);
             if(Object.keys(user).length != 0){
                 this.loading = false;
                 console.log('username already exists :( enter a unique username!');
             }
-            else{               
-                this.tasksService.putUser(userDetails).subscribe(
+            else{ 
+                this.tasksService.getUserEmp(this.model.empID).subscribe(user => {
+                    // console.log(Object.keys(user).length);
+                    if(Object.keys(user).length != 0){
+                        this.loading = false;
+                        console.log('Already registered');
+                    }
+                    else{          
+                    this.tasksService.putUser(userDetails).subscribe(
                     data => {
-                    console.log('user registered')
+                    console.log('user registered');
                     },
                   error => {
                       console.error("Error registering user!");
                       return Observable.throw(error);
                     }
                   );
+                  
                   this.loading = false;
                   this.router.navigate(['login']);
             }
+    });
+}
         });
-
-        // this.alertService.success('Registration successful', true);
-        // this.userService.create(this.model)
-        //     .subscribe(
-        //         data => {
-        //             this.alertService.success('Registration successful', true);
-        //             this.router.navigate(['login']);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
     }
 }

@@ -10,6 +10,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 
+
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: './confiramtionPopup.html'
@@ -20,22 +21,26 @@ export class DialogOverviewExampleDialog {
 seats:number;
 
   constructor(private tasksService:TasksService,
+    // private pageFeature: PageFeaturesComponent,
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-   Confirm(){
+   Confirm(ride:any ){
  this.IsConfirmed=false;
- this.updateSeatCount()
+ console.log(ride);
+ this.updateSeatCount(ride);
   }
-  updateSeatCount(){
-    this.data.free_seats= this.data.free_seats-this.seats
-    console.log(this.data);
-    this.tasksService.updateSeatsCount(this.data).subscribe(
+
+  updateSeatCount(ride:any){
+   ride.free_seats = ride.free_seats-this.seats
+    console.log(ride);
+    this.tasksService.updateSeatsCount(ride).subscribe(
            data => {
-           console.log('ride updated')
+           console.log('ride updated');
+          //  this.pageFeature.getRides();
            },
          error => {
              console.error("Error saving ride!");
@@ -70,6 +75,7 @@ export class PageFeaturesComponent implements OnInit {
   fromDisable:boolean=false;
   toDisable:boolean=false;
   SelectedPool: string;
+
 OnRadioChange(){
   if(this.SelectedPool=='From Pool'){
     this.formValue="RMZ";
@@ -86,8 +92,9 @@ OnRadioChange(){
     this.SearchRides();
   }
 }
-  ngOnInit() {
-    this.tasksService.getRides()
+
+getRides(){
+  this.tasksService.getRides()
     .subscribe(tasks => {
       tasks.map(task => {
         this.fromCities.push(task.from.street);
@@ -100,7 +107,9 @@ OnRadioChange(){
       this.tasks= tasks;
       this.showRides=JSON.parse(JSON.stringify(this.tasks));
     });
-  }
+}
+  ngOnInit() {
+    this.getRides();  }
 
   constructor(private tasksService:TasksService, public dialog: MatDialog,private confirmationService: ConfirmationService) {
   }

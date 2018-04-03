@@ -22,8 +22,16 @@ getUser(userID){
   return this.http.get('http://localhost:3000/api/user/'+userID);
 }
 
+getUserEmp(empID){
+  return this.http.get('http://localhost:3000/api/useremp/'+empID);
+}
+
 putUser(user){
   return this.http.post('http://localhost:3000/api/user', user);
+}
+
+updateUser(user){
+  return this.http.put('http://localhost:3000/api/userUpdate/'+user.login.login_id, user);
 }
 
 getRides(){
@@ -35,7 +43,7 @@ putRide(ride){
 }
 
 updateSeatsCount(ride){
-  console.log(ride);
+  // console.log(ride);
   return this.http.put('http://localhost:3000/api/countUpdate/'+ride.id, ride);
 }
 
