@@ -44,7 +44,7 @@ putRide(ride){
 
 updateSeatsCount(ride){
   // console.log(ride);
-  return this.http.put('http://localhost:3000/api/countUpdate/'+ride.id, ride);
+  return this.http.put('http://localhost:3000/api/countUpdate/'+ride._id, ride);
 }
 
 }

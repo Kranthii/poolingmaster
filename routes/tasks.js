@@ -110,7 +110,7 @@ router.get('/rides',function(req,res,next){
 router.get('/ride/:id',function(req,res,next){
     console.log(req.params.id);
     let rideId = Number(req.params.id);
-    db.activeRides.find({id : rideId},function(err,docs){
+    db.activeRides.find({_id: mongojs.ObjectId(req.params.id)},function(err,docs){
         if(err){
             res.send(err);
         }
@@ -144,11 +144,11 @@ router.put('/countUpdate/:id',function(req,res,next){
     let rideId = Number(req.params.id);
     var ride = req.body;
     var updRide = ride;
-    console.log(updRide);
-    console.log("Put command");
-    console.log(rideId);
-    console.log(updRide.free_seats);
-    db.activeRides.findAndModify({query:{id: rideId},update:{$set : {free_seats: updRide.free_seats}},new : true},function(err,docs){
+    // console.log(updRide);
+    // console.log("Put command");
+    // console.log(rideId);
+    // console.log(updRide.free_seats);
+    db.activeRides.findAndModify({query:{_id: mongojs.ObjectId(updRide._id)},update:{$set : {free_seats: updRide.free_seats}},new : true},function(err,docs){
         if(err){
             res.send(err);
         }

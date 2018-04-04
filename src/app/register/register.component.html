@@ -1,5 +1,7 @@
 ﻿<div class="col-md-6 col-md-offset-3">
     <h2>Register</h2>
+    <div *ngIf="error" class="alert alert-danger">{{errMsg}}</div>
+    <div *ngIf="success" class="alert alert-success">{{sucMsg}}</div>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !empID.valid }">
             <label for="empID">Employee ID</label>

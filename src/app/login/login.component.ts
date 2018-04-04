@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
     loading = false;
     userPasswd: string;
     returnUrl: string;
+    error = false;
+    errMsg: string;
 
     constructor(
         private tasksService:TasksService,
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
+        this.error = false;
         console.log("Loggin in", this.model.username + ", passs:" + this.model.password);
         this.tasksService.getUser(this.model.username).subscribe(user => {
             console.log(Object.keys(user).length);
@@ -51,12 +54,16 @@ export class LoginComponent implements OnInit {
             }
             else{
                 this.loading = false;
+                this.error = true;
+                this.errMsg = "Invalid username or password";
                 console.log('invalid username or password');
                 this.router.navigate(['login']);
             }
         } else{
             this.loading = false;
-            console.log("User doesn't exist. Click register for sign up")
+            this.error = true;
+            this.errMsg = "User doesn't exist. Click register for sign up";
+            console.log("User doesn't exist. Click register for sign up");
         }
         });
         
