@@ -24,7 +24,7 @@ export class MainNavComponent implements OnInit {
 
   ngOnInit() {
     // console.log('logged in as '+ localStorage.getItem('currentUser'));
-    this.name = localStorage.getItem('currentUser');
+    this.name = localStorage.getItem('currentUserFN');
     console.log(this.name);
   }
   openDialog(): void {
@@ -40,7 +40,7 @@ export class MainNavComponent implements OnInit {
     });
   }
   logoff(){
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserFN');
     localStorage.removeItem('userId');
     this.router.navigate(['login']);
   }
