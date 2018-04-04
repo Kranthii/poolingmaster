@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
             this.userPasswd = user[0].login.password;
             if(this.userPasswd == this.model.password){
                 console.log('login succcessful');
-                localStorage.setItem('currentUser', user[0].first_name);
+                localStorage.setItem('currentUserFN', user[0].first_name);
+                localStorage.setItem('currentUserLN', user[0].last_name);
                 localStorage.setItem('userId',this.model.username);
                 this.router.navigate(['pool']);
             }

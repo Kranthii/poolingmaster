@@ -21,7 +21,7 @@ export class DialogOverviewExampleDialog {
 seats:number;
 
   constructor(private tasksService:TasksService,
-    // private pageFeature: PageFeaturesComponent,
+    // prsivate pageFeature: PageFeaturesComponent,
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -69,22 +69,22 @@ export class PageFeaturesComponent implements OnInit {
   toValue:string;
   display: boolean = false;
   Pools = [
-    'From Pool',
-    'To Pool',
+    'From Office',
+    'To Office',
   ];
   fromDisable:boolean=false;
   toDisable:boolean=false;
   SelectedPool: string;
 
 OnRadioChange(){
-  if(this.SelectedPool=='From Pool'){
+  if(this.SelectedPool=='From Office'){
     this.formValue="RMZ";
     this.toValue="";
    this.fromDisable=true;
    this.toDisable=false;
    this.SearchRides();
   }
-  if(this.SelectedPool=='To Pool'){
+  if(this.SelectedPool=='To Office'){
     this.toValue="RMZ";
     this.formValue="";
     this. fromDisable=false;

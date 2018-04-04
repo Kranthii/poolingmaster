@@ -62,17 +62,24 @@
                </div>
                <div class="col-md-3">
                   <mat-card-header>
-                     <mat-card-title>Kranthi Kumar Reddy</mat-card-title>
+                     <mat-card-title>{{item.first_name +" " +item.last_name}}</mat-card-title>
                      <mat-card-subtitle>TekSystems</mat-card-subtitle>
                   </mat-card-header>
                </div>
-               <div class="col-md-6">
+               <div class="col-md-3">
                   <mat-card-content>
-                     <h3>
+                     <h4>
                         {{item.from.street}}
                         <span class="glyphicon glyphicon-arrow-right"></span>
                         {{item.to.street}}
-                     </h3>
+                     </h4>
+                  </mat-card-content>
+               </div>
+               <div class="col-md-3">
+                  <mat-card-content>
+                     <p>
+                       Start Time: {{item.start_time}}
+                     </p>
                   </mat-card-content>
                </div>
                <div class="col-md-2">
