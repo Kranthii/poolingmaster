@@ -5,7 +5,7 @@
 <mat-form-field class="example-full-width">
   <input matInput placeholder="Seats" type="number" max="{{data.free_seats}}" min="1" [(ngModel)]="seats" >
 </mat-form-field>
-<button mat-raised-button color="primary" (click)="Confirm(data)">Yes</button>
+<button mat-raised-button color="primary" [disabled]="seats>data.free_seats || seats < 1 || seats == null " (click)="Confirm(data)">Yes</button>
 <button mat-raised-button (click)="dialogRef.close()">No</button>
 </div>
 <div *ngIf="!IsConfirmed">
