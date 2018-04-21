@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
         // this.authenticationService.logout();
-
+      if  (localStorage.getItem('currentUserFN'))  {
+        this.router.navigate(['pool']);
+      }
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
@@ -67,7 +69,7 @@ export class LoginComponent implements OnInit {
             console.log("User doesn't exist. Click register for sign up");
         }
         });
-        
+
         // console.log(this.userDetails);
         // this.router.navigate('travels');
         // this.Task.login(this.model.username, this.model.password)

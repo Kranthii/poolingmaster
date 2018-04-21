@@ -1,58 +1,69 @@
 
             <div class="row">
-                <div class="col" width="816" colspan=2 valign=top>
-                    <h2 style='text-align:center'>TEK CAR POOLING</h2>
-                </div>
+
             <div style="text-align:center">
                 <mat-radio-group class="example-radio-group" [(ngModel)]="SelectedPool" (ngModelChange)=OnRadioChange()>
                 <mat-radio-button color="primary" class="example-radio-button" *ngFor="let pool of Pools" [value]="pool">
-                <h4>
+                <h5>
                    {{pool}}
-                </h4>
+                </h5>
                 </mat-radio-button>
                 </mat-radio-group>
              </div>
             </div>
-   
-         
-                <label for="labelname">FROM</label>
-                <!-- <div class="smalldiv">
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="address" [(ngModel)]="address" >
-                  </mat-form-field>
-                </div> -->
-              
-                <!-- <input type="text" id="address" name="address" placeholder="Enter your address here."> -->
-                <!-- <div class="smalldiv">
-                <mat-form-field>
-                    <input matInput placeholder="landmark" [(ngModel)]="landmark">
-                  </mat-form-field>
-                </div> -->
-                <div class="smalldiv">
-                  <mat-form-field>
-                    <input matInput placeholder="city" [(ngModel)]="from_city">
-                  </mat-form-field>
-                </div>
-                <label for="labelname">TO</label>
-                <!-- <div class="smalldiv">
-                    <mat-form-field>
-                      <input matInput placeholder="address" [(ngModel)]="address">
-                    </mat-form-field>
-                  </div> -->
-                  <!-- <div class="smalldiv">
-                    <mat-form-field>
-                      <input matInput placeholder="landmark" [(ngModel)]="landmark">
-                    </mat-form-field>
-                  </div> -->
-                  <div class="smalldiv">
-                    <mat-form-field>
-                      <input matInput placeholder="city" [(ngModel)]="to_city">
-                    </mat-form-field>
-                  </div>
-                  <label for="labelname">FREE SEATS</label>
-                  <div class="smalldiv">
-                    <mat-form-field>
-                      <input matInput placeholder="free seats count" [(ngModel)]="free_seats">
-                    </mat-form-field>
-                  </div>
-                <input type="submit" value="Submit" (click)="putRide()">
+<div class="col-md-12">
+  <label for="labelname">From</label>
+  <div class="smalldiv">
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="address" [(ngModel)]="from_address" disabled="{{fromDisable}}" >
+    </mat-form-field>
+  </div>
+  <!-- <input type="text" id="address" name="address" placeholder="Enter your address here."> -->
+  <div class="smalldiv">
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="landmark" [(ngModel)]="from_landmark" disabled="{{fromDisable}}">
+    </mat-form-field>
+  </div>
+  <div class="smalldiv">
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" placeholder="zipcode" [(ngModel)]="from_Pincode" disabled="{{fromDisable}}">
+    </mat-form-field>
+  </div>
+</div>
+<div class="col-md-12">
+  <label for="labelname">To</label>
+  <div class="smalldiv">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="address" [(ngModel)]="to_address" disabled="{{toDisable}}">
+      </mat-form-field>
+    </div>
+    <div class="smalldiv">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="landmark" [(ngModel)]="to_landmark" disabled="{{toDisable}}">
+      </mat-form-field>
+    </div>
+    <div class="smalldiv">
+      <mat-form-field class="example-full-width">
+        <input type="number" matInput placeholder="zipcode" [(ngModel)]="to_pincode" disabled="{{toDisable}}">
+      </mat-form-field>
+    </div>
+</div>
+
+
+<div class="col-md-12">
+  <label for="labelname">Seats</label>
+  <div class="smalldiv">
+    <mat-form-field  class="example-full-width">
+      <input type="number" min="1" matInput placeholder="free seats count" [(ngModel)]="free_seats">
+    </mat-form-field>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class=" col-md-offset-3 col-md-2">
+    <button mat-raised-button color="primary" class="example-full-width" (click)="OnSubmit()"> Add Ride</button>
+
+  </div>
+  <div class=" col-md-offset-1 col-md-2">
+    <button mat-raised-button (click)="dialogRef.close()">Cancel</button>
+  </div>
+</div>

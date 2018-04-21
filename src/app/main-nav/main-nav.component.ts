@@ -27,10 +27,10 @@ export class MainNavComponent implements OnInit {
   }
   openDialog(): void {
     let dialogRef = this.dialog.open(CreatePoolComponent, {
-      width: '1000px',
+      width: '500px',
       //data: item
     });
-    
+
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

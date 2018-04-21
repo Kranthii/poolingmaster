@@ -69,6 +69,7 @@ export class PageFeaturesComponent implements OnInit {
   Pools = [
     'From Office',
     'To Office',
+    'None'
   ];
   fromDisable:boolean=false;
   toDisable:boolean=false;
@@ -82,12 +83,19 @@ OnRadioChange(){
    this.toDisable=false;
    this.SearchRides();
   }
-  if(this.SelectedPool=='To Office'){
+ else if(this.SelectedPool=='To Office'){
     this.toValue="RMZ";
     this.formValue="";
     this. fromDisable=false;
     this.toDisable=true;
     this.SearchRides();
+  }
+  else{
+    this.toValue="";
+    this.formValue="";
+    this. fromDisable=false;
+    this.toDisable=false;
+    this.getRides();
   }
 }
 
@@ -104,6 +112,9 @@ getRides(){
       this.originalToCities = JSON.parse(JSON.stringify(this.toCities));
       this.tasks= tasks;
       this.showRides=JSON.parse(JSON.stringify(this.tasks));
+      this.showRides.map(task => {
+       // task.start_time= new Date(task.start_time);
+      });
     });
 }
   ngOnInit() {
@@ -136,12 +147,12 @@ getRides(){
       this.showRides=JSON.parse(JSON.stringify(this.tasks));
     }
     else if(this.formValue==null){
-      this.showRides=this.tasks.filter(RideItem => RideItem.to.street.toLowerCase().includes(this.toValue.toLowerCase()) );
+      this.showRides=this.tasks.filter(RideItem => RideItem.to.street.toLowerCase().includes(this.toValue.toLowerCase()) ||RideItem.to.building.toLowerCase().includes(this.toValue.toLowerCase())  );
     }
     else if(this.toValue==null){
-      this.showRides=this.tasks.filter(RideItem => RideItem.from.street.toLowerCase().includes(this.formValue.toLowerCase()) );
+      this.showRides=this.tasks.filter(RideItem => RideItem.from.street.toLowerCase().includes(this.formValue.toLowerCase())||RideItem.from.building.toLowerCase().includes(this.formValue.toLowerCase()) );
     }else{
-      this.showRides=this.tasks.filter(RideItem => RideItem.from.street.toLowerCase().includes(this.formValue.toLowerCase()) && RideItem.to.street.toLowerCase().includes(this.toValue.toLowerCase()) );
+      this.showRides=this.tasks.filter(RideItem => (RideItem.from.street.toLowerCase().includes(this.formValue.toLowerCase()) ||RideItem.from.building.toLowerCase().includes(this.formValue.toLowerCase())  )&& (RideItem.to.street.toLowerCase().includes(this.toValue.toLowerCase())||RideItem.to.building.toLowerCase().includes(this.toValue.toLowerCase())) );
     }
   }
 getUser(){
