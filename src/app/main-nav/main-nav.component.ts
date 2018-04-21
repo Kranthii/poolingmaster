@@ -5,9 +5,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
-import { DialogOverviewExampleDialog } from '../page-features/page-features.component';
+import { CreatePoolComponent } from "../create-pool/create-pool.component";
 
 @Component({
   selector: 'app-main-nav',
@@ -19,7 +17,7 @@ export class MainNavComponent implements OnInit {
   private title: string = "Start Bootstrap";
   constructor(private tasksService:TasksService,
     private route: ActivatedRoute,
-    private router: Router,public dialog: MatDialog,private confirmationService: ConfirmationService
+    private router: Router,public dialog: MatDialog
     ) { }
 
   ngOnInit() {
@@ -28,10 +26,11 @@ export class MainNavComponent implements OnInit {
     console.log(this.name);
   }
   openDialog(): void {
-    let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
+    let dialogRef = this.dialog.open(CreatePoolComponent, {
+      width: '1000px',
       //data: item
     });
+    
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

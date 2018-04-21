@@ -79,7 +79,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,FormsModule,ReactiveFormsModule,BrowserAnimationsModule
-  ]
+  ],
+  declarations: []
 })
 export class MaterialModule {}
 
@@ -103,7 +104,8 @@ import { ConfirmationService } from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 import { routing } from './app.routing';
-import {AuthGuard} from './_guards'
+import {AuthGuard} from './_guards';
+import { CreatePoolComponent } from './create-pool/create-pool.component'
 // import {NgModule} from '@angular/core';
 // import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // // import {HttpModule} from '@angular/http';
@@ -111,13 +113,13 @@ import {AuthGuard} from './_guards'
 // import { TasksService } from './tasks.service';
 
 @NgModule({
-  declarations: [AppComponent, MainNavComponent, PageFeaturesComponent,PoolComponent, RegisterComponent , PageFooterComponent,DialogOverviewExampleDialog, LoginComponent],
+  declarations: [AppComponent,CreatePoolComponent, MainNavComponent, PageFeaturesComponent,PoolComponent, RegisterComponent , PageFooterComponent,DialogOverviewExampleDialog, LoginComponent],
   imports: [
     MaterialModule,AngularFontAwesomeModule,
     NoopAnimationsModule,HttpClientModule,FormsModule,ReactiveFormsModule, DialogModule,ConfirmDialogModule ,BrowserModule,routing],
   providers: [ AlertService, AuthGuard, TasksService ,ConfirmationService],
   bootstrap: [AppComponent],
-  entryComponents: [ DialogOverviewExampleDialog ],
+  entryComponents: [ DialogOverviewExampleDialog,CreatePoolComponent ],
   exports:[],
 })
 export class AppModule { }

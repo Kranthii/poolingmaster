@@ -7,8 +7,6 @@ import { TasksService } from '../tasks.service';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
 
 
 @Component({
@@ -56,7 +54,7 @@ seats:number;
   selector: 'app-page-features',
   templateUrl: './page-features.component.html',
   styleUrls: ['./page-features.component.css'],
-  providers:[ConfirmationService]
+  providers:[]
 })
 export class PageFeaturesComponent implements OnInit {
   tasks: any=[];
@@ -111,7 +109,7 @@ getRides(){
   ngOnInit() {
     this.getRides();  }
 
-  constructor(private tasksService:TasksService, public dialog: MatDialog,private confirmationService: ConfirmationService) {
+  constructor(private tasksService:TasksService, public dialog: MatDialog) {
   }
   openDialog(item): void {
     let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -122,7 +120,7 @@ getRides(){
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
      // this.animal = result;
-    // this.ngOnInit();
+    this.ngOnInit();
     });
   }
 

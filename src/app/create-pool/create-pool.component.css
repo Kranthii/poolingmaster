@@ -1,0 +1,10 @@
+.container-fluid
+{
+    background-color:#f2f2f2;
+}
+.col
+{
+    background:#2EA0D7;
+    border-top:solid;
+    border-bottom:solid;
+}
