@@ -33,6 +33,7 @@ export class RegisterComponent {
         '"user_id":'+this.model.empID+','+
         '"first_name":"'+this.model.firstName+'",'+
         '"last_name":"'+this.model.lastName+'",'+
+        '"imageUrl":"img4.jpg",'+
         '"login":{'+
         '"login_id":"'+this.model.username+'",'+
         '"password":"'+this.model.password+'"'+

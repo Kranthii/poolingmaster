@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('currentUserFN', user[0].first_name);
                 localStorage.setItem('currentUserLN', user[0].last_name);
                 localStorage.setItem('userId',this.model.username);
+                localStorage.setItem('imageUrl',user[0].imageUrl);
                 localStorage.setItem('empId',user[0].user_id);
                 this.router.navigate(['pool']);
             }
